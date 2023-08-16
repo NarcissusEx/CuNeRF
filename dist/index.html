@@ -157,7 +157,7 @@
           </div>
           <br>
         </div>
-          <p class="text-justify">
+          <p class="text-justify" style="margin-top:-30px">
             Supervised MISR methods <b>(a)</b> need to collect considerable LR-HR pairs for training, while zero-shot MISR <b>(b)</b> and our \textit{CuNeRF} <b>(c)</b> only train the model on each test volume itself.
             However, given a test volume, ZSMISR methods can only upsample medical images at a specific scale (one-for-one), while our \textit{CuNeRF} can handle arbitrary upsampling scales (one-for-all). 
           </p>
@@ -179,7 +179,7 @@
           </div>
           <br>
         </div>
-          <p class="text-justify">
+          <p class="text-justify" style="margin-top:-20px">
             NeRF <b>(a)</b> <i>only</i> samples the rays (<font color="orange">yellow arrow</font>) corresponding to each training pixel (<font color="red">red circle</font>), which cannot cover the whole representation fields, leaving some "holes" (<i>i.e.</i>, unmodeled spaces) between adjacent training pixels.
             To address this issue, <i>CuNeRF</i> <b>(b)</b> samples cubes (<font color="orchid">purple cube</font>) centered by each training pixel, and therefore the holes are well-covered by the spatial overlaps.
             <b>(c)</b> Visual comparisons of 3D MISR at $\times$2.5 upsampling factor show that NeRF yields grid-like artifacts, while ArSSR produces non-existent details.
