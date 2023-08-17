@@ -3,147 +3,155 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>
-    CuNeRF
-  </title>
+    <title>
+        CuNeRF
+    </title>
 
-  <link rel="icon" href="imgs/favicon.ico">
+    <link rel="icon" href="imgs/favicon.ico">
 
-  <!-- bootstrap -->
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script type="text/javascript" async
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async>
-</script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  <!-- icon -->
-  <script src="https://kit.fontawesome.com/87dc3e863a.js" crossorigin="anonymous"></script>
-  <!-- font -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        showProcessingMessages: false,
-        messageStyle: "none", //不显示信息
-        extensions: ["tex2jax.js"],
-        jax: ["input/TeX", "output/HTML-CSS"],
-        tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code', 'a', 'annotation', 'annotation-xml'],
-        ignoreClass: 'crayon-.*' // 'crayon-'
-        },
-        'HTML-CSS': {
-            showMathMenu: false
-        }
-    });
-    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+    <!-- bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <!-- icon -->
+    <script src="https://kit.fontawesome.com/87dc3e863a.js" crossorigin="anonymous"></script>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            showProcessingMessages: false,
+            messageStyle: "none", //不显示信息
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+            tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code', 'a', 'annotation', 'annotation-xml'],
+            ignoreClass: 'crayon-.*' // 'crayon-'
+            },
+            'HTML-CSS': {
+                showMathMenu: false
+            }
+        });
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
     </script>
-  <style>
-    body {
-      background: rgb(255, 255, 255) no-repeat fixed top left;
-      font-family:'Open Sans', sans-serif;
-    }
-  </style>
+    <style>
+        body {
+            background: rgb(255, 255, 255) no-repeat fixed top left;
+            font-family:'Open Sans', sans-serif;
+        }
+    </style>
 
 </head>
 
 <body>
   <!-- cover -->
-  <section>
-    <div class="jumbotron text-center mt-0" style="padding-bottom: 0px;">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col">
-            <!-- paper title -->
-            <h2 style="font-size:30px;">
-              <b>CuNeRF</b>: Cube-Based Neural Radiance Field for Zero-Shot Medical Image Arbitrary-Scale Super Resolution
-            </h2>
-            
-            <!-- publication -->
-            <h3 style="color:#6e6e6e;"> ICCV 2023 </h3>
-
-            <hr>
-            
-            <!-- authors -->
-            <span>
-                <h4> 
-                <a href="https://NarcissusEx.github.io/" target="_blank">Zixuan Chen</a><sup style="margin-right:30px" >1</sup> 
-                Lingxiao Yang<sup style="margin-right:30px" >1,2,3</sup>
-                <a href="https://cse.sysu.edu.cn/content/2498" target="_blank">Jian-Huang Lai</a><sup style="margin-right:30px" >1,2,3</sup>
-                <a href="https://cse.sysu.edu.cn/content/2478", target="_blank">Xiaohua Xie</a><sup>1,2,3*</sup>
-                </h4>
-            </span>
-            <br>
-            <h5> <sup>1</sup>School of Computer Science and Engineering, Sun Yat-sen University, Guangzhou, China<br>
-                <sup>2</sup>Guangdong Province Key Laboratory of Information Security Technology, Guangzhou, China<br>
-                <sup>3</sup>Key Laboratory of Machine Intelligence and Advanced Computing, Ministry of Education, China<br>
-                <br>
-            </h5>
-            
-            <!-- links -->
-            <div class="row justify-content-center">
-              <!-- link to arxiv -->
-              <!-- <div style="margin: 5px;">
-                <p class="mb-5"><a class="btn btn-large btn-dark" href="https://arxiv.org/abs/2303.02091" role="button" target="_blank">
-                <i class="fa fa-file-zipper"></i> 
-                Arxiv 
-                </a> </p>
-              </div> -->
-              <!-- link to paper -->
-              <div>
-                <p class="mb-5" style="margin-right:30px"><a class="btn btn-large btn-dark" href="https://arxiv.org/pdf/2303.16242.pdf" role="button" target="_blank">
-                <i class="fa fa-file"></i> 
-                Paper 
-                </a> </p>
-              </div>
-              <!-- link to code -->
-              <div>
-                <p class="mb-5" style="margin-right:30px"><a class="btn btn-large btn-dark" href="https://github.com/NarcissusEx/CuNeRF" role="button" target="_blank">
-                <i class="fa fa-github-alt"></i> 
-                Code 
-                </a> </p>
-              </div>
-              <!-- link to models -->
-              <div">
-                <p class="mb-5"><a class="btn btn-large btn-dark" href="https://bilibili.com" role="button" target="_blank">
-                <i class="fa fa-television"></i> 
-                Video 
-                </a> </p>
-              </div>
+    <section>
+        <div class="jumbotron text-center mt-0" style="padding-bottom: 0px;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                        <!-- paper title -->
+                        <h2 style="font-size:30px;">
+                            <b>CuNeRF</b>: Cube-Based Neural Radiance Field for Zero-Shot Medical Image Arbitrary-Scale Super Resolution
+                        </h2>
+                        <!-- publication -->
+                        <h3 style="color:#6e6e6e;"> ICCV 2023 </h3>
+                        <hr>
+                        <!-- authors -->
+                        <span>
+                            <h4> 
+                                <a href="https://NarcissusEx.github.io/" target="_blank">Zixuan Chen</a><sup style="margin-right:30px" >1</sup> 
+                                Lingxiao Yang<sup style="margin-right:30px" >1,2,3</sup>
+                                <a href="https://cse.sysu.edu.cn/content/2498" target="_blank">Jian-Huang Lai</a><sup style="margin-right:30px" >1,2,3</sup>
+                                <a href="https://cse.sysu.edu.cn/content/2478", target="_blank">Xiaohua Xie</a><sup>1,2,3*</sup>
+                            </h4>
+                        </span>
+                        <br>
+                        <h5> 
+                            <sup>1</sup>School of Computer Science and Engineering, Sun Yat-sen University, Guangzhou, China<br>
+                            <sup>2</sup>Guangdong Province Key Laboratory of Information Security Technology, Guangzhou, China<br>
+                            <sup>3</sup>Key Laboratory of Machine Intelligence and Advanced Computing, Ministry of Education, China<br>
+                            <br>
+                        </h5>
+                        
+                        <!-- links -->
+                        <div class="row justify-content-center">
+                            <div>
+                                <p class="mb-5" style="margin-right:30px">
+                                    <a class="btn btn-large btn-dark" href="https://arxiv.org/pdf/2303.16242.pdf" role="button" target="_blank">
+                                        <i class="fa fa-file"></i> 
+                                        Paper 
+                                    </a> 
+                                </p>
+                            </div>
+                            <!-- link to code -->
+                            <div>
+                                <p class="mb-5" style="margin-right:30px">
+                                    <a class="btn btn-large btn-dark" href="https://github.com/NarcissusEx/CuNeRF" role="button" target="_blank">
+                                        <i class="fa fa-github-alt"></i> 
+                                        Code 
+                                    </a> 
+                                </p>
+                            </div>
+                            <!-- link to models -->
+                            <div>
+                                <p class="mb-5">
+                                    <a class="btn btn-large btn-dark" href="https://bilibili.com" role="button" target="_blank">
+                                        <i class="fa fa-television"></i> 
+                                        Video 
+                                    </a> 
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
   <!-- abstract -->
-  <section>
-    <div class="container">
-      <div class="row">
-        <div class="col-12 text-center">
-          <h3>Abstract</h3>
-          <div class="row justify-content-center" style="align-items:center; display:flex;">
-            <div> 
-              <img src="imgs/cunerf.png" alt="cunerf" class="img-responsive" width="100%"/>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                <!-- <h3>Abstract</h3> -->
+                    <div class="row justify-content-center" style="align-items:center; display:flex;">
+                        <div> 
+                            <img src="imgs/cunerf.png" alt="cunerf" class="img-responsive" width="100%"/>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <p class="text-justify">
+                    <b>CuNeRF</b> is the first <i>zero-shot</i> Medical Image Arbitrary-Scale Super Resolution framework.
+                    After training on an LR medical volume <b>(a)</b> itself, <b>CuNeRF</b> can build the corresponding continuous volumetric representation <b>(b)</b>, which is able to achieve <b>(c)</b> Free-viewpoint slice synthesis: yielding novel-view medical slices from the arbitrary viewpoints, and <b>(d)</b> Arbitrary-scale super-resolution: upsampling medical images at arbitrary scales in a continuous domain.
+                </p>
             </div>
-          </div>
-          <br>
         </div>
-          <p class="text-justify">
-            Medical image arbitrary-scale super-resolution (MIASSR) has recently gained widespread attention, aiming to supersample medical volumes at arbitrary scales via a single model. However, existing MIASSR methods face two major limitations: <b>(i)</b> reliance on high-resolution (HR) volumes and <b>(ii)</b> limited generalization ability, which restricts their applications in various scenarios. To overcome these limitations, we propose Cube-based Neural Radiance Field (CuNeRF), a zero-shot MIASSR framework that is able to yield medical images at arbitrary scales and free viewpoints in a continuous domain. Unlike existing MISR methods that only fit the mapping between low-resolution (LR) and HR volumes, <i>CuNeRF</i> focuses on building a continuous volumetric representation from each LR volume without the knowledge from the corresponding HR one. This is achieved by the proposed differentiable modules: cube-based sampling, isotropic volume rendering, and cube-based hierarchical rendering. Through extensive experiments on magnetic resource imaging (MRI) and computed tomography (CT) modalities, we demonstrate that <i>CuNeRF</i> can synthesize high-quality SR medical images, which outperforms state-of-the-art MISR methods, achieving better visual verisimilitude and fewer objectionable artifacts. Compared to existing MISR methods, our <i>CuNeRF</i> is more applicable in practice.
-          </p>
+    </section>
+    <br>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h3>Abstract</h3>
+                    <br>
+                </div>
+                <p class="text-justify">
+                    Medical image arbitrary-scale super-resolution (MIASSR) has recently gained widespread attention, aiming to supersample medical volumes at arbitrary scales via a single model. However, existing MIASSR methods face two major limitations: <b>(i)</b> reliance on high-resolution (HR) volumes and <b>(ii)</b> limited generalization ability, which restricts their applications in various scenarios. To overcome these limitations, we propose Cube-based Neural Radiance Field (CuNeRF), a zero-shot MIASSR framework that is able to yield medical images at arbitrary scales and free viewpoints in a continuous domain. Unlike existing MISR methods that only fit the mapping between low-resolution (LR) and HR volumes, <b>CuNeRF</b> focuses on building a continuous volumetric representation from each LR volume without the knowledge from the corresponding HR one. This is achieved by the proposed differentiable modules: cube-based sampling, isotropic volume rendering, and cube-based hierarchical rendering. Through extensive experiments on magnetic resource imaging (MRI) and computed tomography (CT) modalities, we demonstrate that <b>CuNeRF</b> can synthesize high-quality SR medical images, which outperforms state-of-the-art MISR methods, achieving better visual verisimilitude and fewer objectionable artifacts. Compared to existing MISR methods, our <b>CuNeRF</b> is more applicable in practice.
+                </p>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
-  <br>
+    </section>
+    <br>
 
   <!-- <section>
     <div class="container">
@@ -158,8 +166,8 @@
           <br>
         </div>
           <p class="text-justify" style="margin-top:-30px">
-            Supervised MISR methods <b>(a)</b> need to collect considerable LR-HR pairs for training, while zero-shot MISR <b>(b)</b> and our \textit{CuNeRF} <b>(c)</b> only train the model on each test volume itself.
-            However, given a test volume, ZSMISR methods can only upsample medical images at a specific scale (one-for-one), while our \textit{CuNeRF} can handle arbitrary upsampling scales (one-for-all). 
+            Supervised MISR methods <b>(a)</b> need to collect considerable LR-HR pairs for training, while zero-shot MISR <b>(b)</b> and our <b>CuNeRF</b> <b>(c)</b> only train the model on each test volume itself.
+            However, given a test volume, ZSMISR methods can only upsample medical images at a specific scale (one-for-one), while our <b>CuNeRF</b> can handle arbitrary upsampling scales (one-for-all). 
           </p>
         </div>
       </div>
@@ -167,129 +175,153 @@
   </section>
   <br> -->
 
-  <section>
-    <div class="container">
-      <div class="row">
-        <div class="col-12 text-center">
-          <h3>Motivation</h3> <br>
-          <div class="row justify-content-center" style="align-items:center; display:flex;">
-            <div> 
-              <img src="imgs/motivation.png" alt="cunerf" class="img-responsive" width="100%"/>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h3>Motivation</h3> 
+                    <br>
+                    <div class="row justify-content-center" style="align-items:center; display:flex;">
+                        <div> 
+                            <img src="imgs/motivation.png" alt="cunerf" class="img-responsive" width="100%"/>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <p class="text-justify" style="margin-top:-20px">
+                    NeRF <b>(a)</b> <i>only</i> samples the rays (<font color="orange">yellow arrow</font>) corresponding to each training pixel (<font color="red">red circle</font>), which cannot cover the whole representation fields, leaving some "holes" (<i>i.e.</i>, unmodeled spaces) between adjacent training pixels.
+                    To address this issue, <b>CuNeRF</b> <b>(b)</b> samples cubes (<font color="orchid">purple cube</font>) centered by each training pixel, and therefore the holes are well-covered by the spatial overlaps.
+                    <b>(c)</b> Visual comparisons of 3D MISR at $\times$2.5 upsampling factor show that NeRF yields grid-like artifacts, while ArSSR produces non-existent details.
+                    By contrast, our <b>CuNeRF</b> achieves better visual verisimilitude and fewer artifacts.
+                </p>
             </div>
-          </div>
-          <br>
         </div>
-          <p class="text-justify" style="margin-top:-20px">
-            NeRF <b>(a)</b> <i>only</i> samples the rays (<font color="orange">yellow arrow</font>) corresponding to each training pixel (<font color="red">red circle</font>), which cannot cover the whole representation fields, leaving some "holes" (<i>i.e.</i>, unmodeled spaces) between adjacent training pixels.
-            To address this issue, <i>CuNeRF</i> <b>(b)</b> samples cubes (<font color="orchid">purple cube</font>) centered by each training pixel, and therefore the holes are well-covered by the spatial overlaps.
-            <b>(c)</b> Visual comparisons of 3D MISR at $\times$2.5 upsampling factor show that NeRF yields grid-like artifacts, while ArSSR produces non-existent details.
-            By contrast, our <i>CuNeRF</i> achieves better visual verisimilitude and fewer artifacts.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <br>
+    </section>
+    <br>
 
-  <section>
-    <div class="container">
-      <div class="row">
-        <div class="col-12 text-center">
-          <h3>Framework</h3>
-          <div class="row justify-content-center" style="align-items:center; display:flex;">
-            <div> 
-              <img src="imgs/framework.png" alt="cunerf" class="img-responsive" width="100%"/>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h3>Framework</h3>
+                    <div class="row justify-content-center" style="align-items:center; display:flex;">
+                        <div> 
+                        <img src="imgs/framework.png" alt="cunerf" class="img-responsive" width="100%"/>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <p class="text-justify">
+                    The overall framework of our <b>CuNeRF</b>.
+                    To synthesize a pixel (<font color="red">red circle</font>) with the spatial position $\mathbf{x}_t=(x, y, z)$, <b>(a)</b> <b>CuNeRF</b> first uniformly samples $N$ points as a point set $\{\hat{\mathbf{x}}_i\}^N_{i=1}$ within the cube space (<font color="orchid">purple cube</font>) centered by $\mathbf{x}_t$.
+                    Then, <b>CuNeRF</b> obtains the coarse estimation (<font color="blue">blue cube</font>) by feeding the sampling points into an MLP $F_{\Theta}$ to produce the set of corresponding pixel intensity $\{c_i\}_{i=1}^N$ and volume density $\{\sigma_i\}_{i=1}^N$.    
+                    <b>(b)</b> Subsequently, assuming $\sigma$ of each sampling point is only related to the distance with the cube center $\mathbf{x}_t$, <b>CuNeRF</b> computes the coarse output of the target pixel via volume integral.
+                    <b>(c)</b> Finally, <b>CuNeRF</b> resamples the points under the probability density function (PDF) of coarse estimation to acquire the fine estimation (<font color="orange">orange cube</font>) of the cube.
+                    The fine output is generated by the same procedures as <b>(b)</b>.
+                    Since these two rendering functions are differentiable, <b>CuNeRF</b> can be optimized by minimizing the rendering loss $\mathcal{L}_{A}$.
+                    The fine output is the final rendering result of the target spatial position $\mathbf{x}_t$.
+                </p>
             </div>
-          </div>
-          <br>
         </div>
-          <p class="text-justify">
-            The overall framework of our <i>CuNeRF</i>.
-            To synthesize a pixel (<font color="red">red circle</font>) with the spatial position $\mathbf{x}_t=(x, y, z)$, <b>(a)</b> <i>CuNeRF</i> first uniformly samples $N$ points as a point set $\{\hat{\mathbf{x}}_i\}^N_{i=1}$ within the cube space (<font color="orchid">purple cube</font>) centered by $\mathbf{x}_t$.
-            Then, <i>CuNeRF</i> obtains the coarse estimation (<font color="blue">blue cube</font>) by feeding the sampling points into an MLP $F_{\Theta}$ to produce the set of corresponding pixel intensity $\{c_i\}_{i=1}^N$ and volume density $\{\sigma_i\}_{i=1}^N$.    
-            <b>(b)</b> Subsequently, assuming $\sigma$ of each sampling point is only related to the distance with the cube center $\mathbf{x}_t$, <i>CuNeRF</i> computes the coarse output of the target pixel via volume integral.
-            <b>(c)</b> Finally, <i>CuNeRF</i> resamples the points under the probability density function (PDF) of coarse estimation to acquire the fine estimation (<font color="orange">orange cube</font>) of the cube.
-            The fine output is generated by the same procedures as <b>(b)</b>.
-            Since these two rendering functions are differentiable, <i>CuNeRF</i> can be optimized by minimizing the rendering loss $\mathcal{L}_{A}$.
-            The fine output is the final rendering result of the target spatial position $\mathbf{x}_t$.
-          </p>
+    </section>
+    <br>
+
+
+    <!-- comparison results -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h3>Medical Slice Synthesis</h3>
+                    <hr style="margin-top:0px">
+                    <br> 
+                    <h4> 
+                        <b>Arbitrary-Scale Super-Resolution</b> 
+                    </h4>
+                    <table style="table-layout: fixed;">
+                        <tbody>
+                            <tr>
+                                <td width="25%"> 
+                                    <a href="renderer.html?scene=chair" style="text-decoration: none"> <img src="images/chair.jpg" alt="chair" class="img-responsive" width="100%"/> 
+                                        <b>Chair</b> 
+                                    </a> 
+                                </td>
+                                <td width="25%"> 
+                                    <a href="renderer.html?scene=drums" style="text-decoration: none"> <img src="images/drums.jpg" alt="drums" class="img-responsive" width="100%"/> 
+                                        <b>Drums</b> 
+                                    </a> 
+                                </td>
+                                <td width="25%"> 
+                                    <a href="renderer.html?scene=ficus" style="text-decoration: none"> <img src="images/ficus.jpg" alt="ficus" class="img-responsive" width="100%"/> 
+                                        <b>Ficus</b> 
+                                    </a> 
+                                </td>
+                                <td width="25%"> 
+                                    <a href="renderer.html?scene=hotdog" style="text-decoration: none"> <img src="images/hotdog.jpg" alt="hotdog" class="img-responsive" width="100%"/>   
+                                        <b>Hotdog</b> 
+                                    </a> 
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <br> 
+                    <h4> 
+                        <b>Free-Viewpoint Slice Synthesis</b> 
+                    </h4>
+                    <table style="table-layout: fixed;">
+                        <tbody>
+                            <tr>
+                                <td width="25%"> 
+                                    <a href="renderer.html?scene=chair" style="text-decoration: none"> <img src="images/chair.jpg" alt="chair" class="img-responsive" width="100%"/> 
+                                        <b>Chair</b> 
+                                    </a> 
+                                </td>
+                                <td width="25%"> 
+                                    <a href="renderer.html?scene=drums" style="text-decoration: none"> <img src="images/drums.jpg" alt="drums" class="img-responsive" width="100%"/> 
+                                        <b>Drums</b> 
+                                    </a> 
+                                </td>
+                                <td width="25%"> 
+                                    <a href="renderer.html?scene=ficus" style="text-decoration: none"> <img src="images/ficus.jpg" alt="ficus" class="img-responsive" width="100%"/> 
+                                        <b>Ficus</b> 
+                                    </a> 
+                                </td>
+                                <td width="25%"> 
+                                    <a href="renderer.html?scene=hotdog" style="text-decoration: none"> <img src="images/hotdog.jpg" alt="hotdog" class="img-responsive" width="100%"/>   
+                                        <b>Hotdog</b> 
+                                    </a> 
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
-  <br>
-
-
-  <!-- comparison results -->
-  <section>
-    <div class="container">
-      <div class="row">
-        <div class="col-12 text-center">
-            <h3>Medical Slice Synthesis Demo</h3>
-            <hr style="margin-top:0px">
-
-            <br> <h4> <b>Arbitrary-Scale Super-Resolution</b> </h4>
-            <table style="table-layout: fixed;">
-              <tbody>
-                  <tr>
-                    <td width="25%"> <a href="renderer.html?scene=chair" style="text-decoration: none"> <img src="images/chair.jpg" alt="chair" class="img-responsive" width="100%"/> <b>Chair</b> </a> </td>
-                    <td width="25%"> <a href="renderer.html?scene=drums" style="text-decoration: none"> <img src="images/drums.jpg" alt="drums" class="img-responsive" width="100%"/> <b>Drums</b> </a> </td>
-                    <td width="25%"> <a href="renderer.html?scene=ficus" style="text-decoration: none"> <img src="images/ficus.jpg" alt="ficus" class="img-responsive" width="100%"/> <b>Ficus</b> </a> </td>
-                    <td width="25%"> <a href="renderer.html?scene=hotdog" style="text-decoration: none"> <img src="images/hotdog.jpg" alt="hotdog" class="img-responsive" width="100%"/> <b>Hotdog</b> </a> </td>
-                  </tr>
-                  <tr>
-                    <td width="25%"> <a href="renderer.html?scene=lego" style="text-decoration: none"> <img src="images/lego.jpg" alt="lego" class="img-responsive" width="100%"/> <b>Lego</b> </a> </td>
-                    <td width="25%"> <a href="renderer.html?scene=materials" style="text-decoration: none"> <img src="images/materials.jpg" alt="materials" class="img-responsive" width="100%"/> <b>Materials</b> </a> </td>
-                    <td width="25%"> <a href="renderer.html?scene=mic" style="text-decoration: none"> <img src="images/mic.jpg" alt="mic" class="img-responsive" width="100%"/> <b>Mic</b> </a> </td>
-                    <td width="25%"> <a href="renderer.html?scene=ship" style="text-decoration: none"> <img src="images/ship.jpg" alt="ship" class="img-responsive" width="100%"/> <b>Ship</b> </a> </td>
-                  </tr>
-              </tbody>
-            </table>
-
-            <br> <h4><b>Free-Viewpoint Slice Synthesis</b></h4>
-            <table style="table-layout: fixed;">
-              <tbody>
-                  <tr>
-                    <td width="25%"> <a href="renderer.html?scene=fern" style="text-decoration: none"> <img src="images/fern.jpg" alt="fern" class="img-responsive" width="100%"/> <b>fern</b> </a> </td>
-                    <td width="25%"> <a href="renderer.html?scene=flower" style="text-decoration: none"> <img src="images/flower.jpg" alt="flower" class="img-responsive" width="100%"/> <b>flower</b> </a> </td>
-                    <td width="25%"> <a href="renderer.html?scene=fortress" style="text-decoration: none"> <img src="images/fortress.jpg" alt="fortress" class="img-responsive" width="100%"/> <b>fortress</b> </a> </td>
-                    <td width="25%"> <a href="renderer.html?scene=horns" style="text-decoration: none"> <img src="images/horns.jpg" alt="horns" class="img-responsive" width="100%"/> <b>horns</b> </a> </td>
-                  </tr>
-                  <tr>
-                    <td width="25%"> <a href="renderer.html?scene=leaves" style="text-decoration: none"> <img src="images/leaves.jpg" alt="leaves" class="img-responsive" width="100%"/> <b>leaves</b> </a> </td>
-                    <td width="25%"> <a href="renderer.html?scene=orchids" style="text-decoration: none"> <img src="images/orchids.jpg" alt="orchids" class="img-responsive" width="100%"/> <b>orchids</b> </a> </td>
-                    <td width="25%"> <a href="renderer.html?scene=room" style="text-decoration: none"> <img src="images/room.jpg" alt="room" class="img-responsive" width="100%"/> <b>room</b> </a> </td>
-                    <td width="25%"> <a href="renderer.html?scene=trex" style="text-decoration: none"> <img src="images/trex.jpg" alt="trex" class="img-responsive" width="100%"/> <b>trex</b> </a> </td>
-                  </tr>
-              </tbody>
-            </table>
-        </div>
-      </div>
-    </div>
-  </section>
-  <br>
+    </section>
+    <br>
 
   <!-- citing -->
-  <div class="container">
-    <div class="row ">
-      <div class="col-12">
-        <h3>Citation</h3>
-        <hr style="margin-top:0px">
-        <pre style="background-color: #e9eeef;padding: 1.25em 1.5em">
+    <div class="container">
+        <div class="row ">
+            <div class="col-12">
+                <h3>Citation</h3>
+                <hr style="margin-top:0px">
+                <pre style="background-color: #e9eeef;padding: 1.25em 1.5em">
 <code>@article{chen2023cunerf,
     title={CuNeRF: Cube-Based Neural Radiance Field for Zero-Shot Medical Image Arbitrary-Scale Super Resolution},
     author={Zixuan Chen and Lingxiao Yang and Jianhuang Lai and Xiaohua Xie},
     journal={IEEE/CVF International Conference on Computer Vision (ICCV)},
     year={2023}
-}</code></pre>
-      </div>
+}</code>
+                </pre>
+            </div>
+        </div>
     </div>
-  </div>
-
-  <footer class="text-center" style="margin-bottom:10px; font-size: medium;">
-    <hr>
-    Thanks to <a href="https://lioryariv.github.io/" target="_blank">Lior Yariv</a> for the <a href="https://lioryariv.github.io/idr/" target="_blank">website template</a>.
-  </footer>
+    <footer class="text-center" style="margin-bottom:10px; font-size: medium;">
+        <hr>
+        Thanks to <a href="https://lioryariv.github.io/" target="_blank">Lior Yariv</a> for the <a href="https://lioryariv.github.io/idr/" target="_blank">website template</a>.
+    </footer>
 
 </body>
 </html>
