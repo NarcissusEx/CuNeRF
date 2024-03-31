@@ -1,5 +1,5 @@
 # CuNeRF
-The source code for our paper "**[CuNeRF: Cube-Based Neural Radiance Field for Zero-Shot Medical Image Arbitrary-Scale Super Resolution](https://openaccess.thecvf.com/content/ICCV2023/papers/Chen_CuNeRF_Cube-Based_Neural_Radiance_Field_for_Zero-Shot_Medical_Image_Arbitrary-Scale_ICCV_2023_paper.pdf)**", Zixuan Chen, Lingxiao Yang, Jian-Huang Lai, Xiaohua Xie, ICCV 2023.
+The source code for our paper "**[CuNeRF: Cube-Based Neural Radiance Field for Zero-Shot Medical Image Arbitrary-Scale Super Resolution](https://openaccess.thecvf.com/content/ICCV2023/papers/Chen_CuNeRF_Cube-Based_Neural_Radiance_Field_for_Zero-Shot_Medical_Image_Arbitrary-Scale_ICCV_2023_paper.pdf)**", [Zixuan Chen](https://narcissusex.github.io), [Lingxiao Yang](https://zjjconan.github.io/), [Jian-Huang Lai](https://cse.sysu.edu.cn/content/2498), [Xiaohua Xie](https://cse.sysu.edu.cn/content/2478), *IEEE/CVF International Conference on Computer Vision* (**ICCV**), 2023.
 
 <p align="center">
   <a href="https://narcissusex.github.io/CuNeRF/">Project Page</a> |
@@ -48,7 +48,7 @@ python run.py <expname> --cfg <config file> --scale <SR scale> --mode train --fi
 See *example_train.sh* for details, we also provide an example config file in the *configs* dir.
 
 ## 3) Arbitrary rendering for medical slices
-Render slices at arbitrary positions (*zpos*: $-0.1$ ~ $0.1$), scales ($1.$x ~ $2.$x) and viewpoints (*angles*: $0$ ~ $360$ degrees) with an rotation axis $[1,1,0]$:
+Render slices at arbitrary positions (*zpos*: $-0.1$ ~ $0.1$), scales ($1$.x ~ $2$.x) and viewpoints (*angles*: $0$ ~ $360$ degrees) with an rotation axis $[1,1,0]$:
 ```bash
 python run.py <expname> --cfg <config file> --mode test --file <filepath> --scales 1 2 --zpos -0.1 0.1 --angles 0 360 --axis 1 1 0 --asteps 45 
 ```
