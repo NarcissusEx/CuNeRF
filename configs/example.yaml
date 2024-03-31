@@ -1,0 +1,131 @@
+# example config for CuNeRF
+
+# training
+max_iter : 200000
+eval_iter: 10000
+save_iter: $eval_iter
+log_iter : 100
+bs_train : 1024 # batch size 
+bs_eval  : 32768
+bs_test  : $bs_eval
+N_eval   : 50
+lr       : 0.002
+lr_final : 0.00002
+workers  : 4
+
+# modeling
+stype     : cube
+radius    : 1
+n_samples : 64
+n_imps    : 64
+mtype     : NeRFMLP
+
+# test
+z_init     : 0
+z_final    : 0
+scale_init : 1
+scale_final: 1
+angle_init : 0
+angle_final: 360
+asteps     : 45
+axis       : [0, 1, 1]
+cam_scale  : 1.5
+
+# path
+result_path : save
+save_path   : save
+log_path    : save
+
+loss : 
+  name : Adaptive_MSE_LOSS
+
+sampling : 
+  stype     : $stype
+  n_samples : $n_samples
+
+rendering :
+  stype : $stype
+
+importance :
+  stype     : $stype
+  n_samples : $n_imps
+
+model : 
+  name    : $mtype
+  netD    : 8
+  netW    : 256
+  in_ch   : 3
+  out_ch  : 2
+  skips   : [4]
+  max_freq: 10
+  p_fns   : ['sin', 'cos']
+
+model_ft : $model
+
+dataset : 
+  mode : $mode
+  dname: Medical3D
+  train : 
+    file    : $file
+    scale   : $scale
+    radius  : $radius
+    bsize   : $bs_train
+    modality: $modality 
+
+  eval :
+    file    : $file
+    scale   : $scale
+    radius  : $radius
+    N_eval  : $N_eval
+    bsize   : $bs_eval
+    modality: $modality 
+
+  test :
+    file       : $file
+    scale_init : $scale_init
+    scale_final: $scale_final
+    radius     : $radius
+    axis       : $axis
+    angle_init : $angle_init
+    angle_final: $angle_final
+    z_init     : $z_init
+    z_final    : $z_final
+    cam_scale  : $cam_scale
+    asteps     : $asteps
+
+dataloader :
+  mode : $mode
+  train :
+    batch_size : 1
+    shuffle : True
+  
+  eval:
+    batch_size : 1
+    shuffle : False
+
+  test:
+    batch_size : 1
+    shuffle : False
+
+optim :
+  name : Adam
+  lr   : $lr
+  betas: [0.9, 0.999]
+  eps  : 0.000001
+
+metrics : 
+  psnr  : True
+  ssim  : True
+  lpips : False
+  avg   : False
+
+lr_decay : 
+  lr_init        : $lr
+  lr_final       : $lr_final
+  max_iter       : $max_iter
+  lr_delay_steps : 1000
+  lr_delay_mult  : 0.01
+
+clip_grad :
+  max_val  : 0.1
+  max_norm : 0.1
