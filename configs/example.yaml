@@ -21,15 +21,12 @@ n_imps    : 64
 mtype     : NeRFMLP
 
 # test
-z_init     : 0
-z_final    : 0
-scale_init : 1
-scale_final: 1
-angle_init : 0
-angle_final: 360
-asteps     : 45
-axis       : [0, 1, 1]
-cam_scale  : 1.5
+zpos      : [0]
+scales    : [1]
+angles    : [0]
+asteps    : 45
+axis      : [0, 1, 1]
+cam_scale : 1.5
 
 # path
 result_path : save
@@ -81,17 +78,14 @@ dataset :
     modality: $modality 
 
   test :
-    file       : $file
-    scale_init : $scale_init
-    scale_final: $scale_final
-    radius     : $radius
-    axis       : $axis
-    angle_init : $angle_init
-    angle_final: $angle_final
-    z_init     : $z_init
-    z_final    : $z_final
-    cam_scale  : $cam_scale
-    asteps     : $asteps
+    file      : $file
+    scales    : $scales
+    radius    : $radius
+    axis      : $axis
+    angles    : $angles
+    zpos      : $zpos
+    cam_scale : $cam_scale
+    asteps    : $asteps
 
 dataloader :
   mode : $mode

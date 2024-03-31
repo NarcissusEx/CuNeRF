@@ -1,5 +1,5 @@
 # create conda env
-conda create -n cunerf python=3.9 -y
+# conda create -n cunerf python=3.9 -y
 
 # install Pytorch
 conda install pytorch==1.8.0 torchvision==0.9.0 torchaudio==0.8.0 cudatoolkit=11.1 -c pytorch -c conda-forge -y
@@ -13,3 +13,6 @@ pip install gpustat\
             tqdm\
             pyyaml\
             lpips -i https://pypi.douban.com/simple
+
+# install ffmpeg [optional]
+# apt install ffmpeg

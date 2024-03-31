@@ -177,9 +177,9 @@ class Cfg:
 
     def Save_test_map(self, maps, zs, angles, scales):
         axis = reduce(lambda x1, x2 : str(x1) + str(x2), [int(axis) for axis in self.axis])
-        angle = self.angle_init if self.angle_init == self.angle_final else f'{self.angle_init}-{self.angle_final}'
-        scale = f'{self.scale_init:.1f}x' if self.scale_init == self.scale_final else f'{self.scale_init:.1f}x-{self.scale_final:.1f}x'
-        zpos = f'{self.z_init:.2f}' if self.z_init == self.z_final else f'{self.z_init:.2f}-{self.z_final:.2f}'
+        angle = self.angles[0] if len(self.angles) == 1 else f'{self.angles[0]}-{self.angles[1]}'
+        scale = f'{self.scales[0]:.1f}x' if len(self.scales) == 1 else f'{self.scales[0]:.1f}x-{self.scales[1]:.1f}x'
+        zpos = f'{self.zpos[0]:.2f}' if len(self.zpos) == 1 else f'{self.zpos[0]:.2f}-{self.zpos[1]:.2f}'
         result_dir = os.path.join(self.result_path, 'test', f'{zpos}_{axis}_{angle}_{scale}')
         os.makedirs(result_dir, exist_ok=True)
         d = len(str(len(maps))) + 1

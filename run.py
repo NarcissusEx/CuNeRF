@@ -33,12 +33,9 @@ def argParse():
     parser.add_argument('--resume_type', default='current')
 
     # test options
-    parser.add_argument('--z_init', type=float) # init pos of the medical volume
-    parser.add_argument('--z_final', type=float) # final pos of the medical volume
-    parser.add_argument('--scale_init', type=float) # init rendering scale
-    parser.add_argument('--scale_final', type=float) # final rendering scale
-    parser.add_argument('--angle_init', type=int) # init rendering angle
-    parser.add_argument('--angle_final', type=int) # final rendering angle
+    parser.add_argument('--zpos', nargs='+', type=float) # pos of the medical volume, e.g., [-0.5, 0.5], i.e., -0.5 ~ 0.5
+    parser.add_argument('--scales', nargs='+', type=float) # rendering scales, e.g., [1., 2.], i.e., 1x ~ 2x
+    parser.add_argument('--angles', nargs='+', type=int) # rendering angles, e.g., [0, 360], i.e., 0 ~ 360
     parser.add_argument('--axis', nargs='+', type=int) # rotation axis, e.g., [1,1,0]
     parser.add_argument('--cam_scale', nargs='+', type=float) # camera size = img size * cam_scale
     parser.add_argument('--is_details', action='store_true') # save the details of rendering

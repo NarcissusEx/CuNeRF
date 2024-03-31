@@ -106,9 +106,9 @@ class Medical3D(Base):
         super(Medical3D, self).__init__(params)
         self.load_data()
         if self.mode == 'test':
-            self.angles = np.linspace(self.angle_init, self.angle_final, self.asteps)
-            self.scales = np.linspace(self.scale_init, self.scale_final, self.asteps)
-            self.zs = np.linspace(self.z_init, self.z_final, self.asteps)
+            self.angles = np.linspace(self.angles[0], self.angles[1], self.asteps) if len(self.angles) == 2 else [self.angles[0]] * self.asteps
+            self.scales = np.linspace(self.scales[0], self.scales[1], self.asteps) if len(self.scales) == 2 else [self.scales[0]] * self.asteps
+            self.zs = np.linspace(self.zpos[0], self.zpos[1], self.asteps) if len(self.zpos) == 2 else [self.zpos[0]] * self.asteps
 
     def load_data(self):
         data = self.load_file()
