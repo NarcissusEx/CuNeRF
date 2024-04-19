@@ -18,7 +18,7 @@ import torch.nn.functional as F
 from src import Cfg, utils
 
 def argParse():
-    parser = argparse.ArgumentParser(description='SLICESYNTHESIS')
+    parser = argparse.ArgumentParser(description='MISR3D')
     # basic settings
     parser.add_argument('expname', type=str)
     parser.add_argument('--cfg', default='configs/example.yaml')
@@ -33,9 +33,9 @@ def argParse():
     parser.add_argument('--resume_type', default='current')
 
     # test options
-    parser.add_argument('--zpos', nargs='+', type=float) # pos of the medical volume, e.g., [-0.5, 0.5], i.e., -0.5 ~ 0.5
-    parser.add_argument('--scales', nargs='+', type=float) # rendering scales, e.g., [1., 2.], i.e., 1x ~ 2x
-    parser.add_argument('--angles', nargs='+', type=int) # rendering angles, e.g., [0, 360], i.e., 0 ~ 360
+    parser.add_argument('--zpos', nargs='+', type=float) # pos of the medical volume
+    parser.add_argument('--scales', nargs='+', type=float) # rendering scale
+    parser.add_argument('--angles', nargs='+', type=int) # init rendering angle
     parser.add_argument('--axis', nargs='+', type=int) # rotation axis, e.g., [1,1,0]
     parser.add_argument('--cam_scale', nargs='+', type=float) # camera size = img size * cam_scale
     parser.add_argument('--is_details', action='store_true') # save the details of rendering
@@ -80,7 +80,7 @@ def eval(cfg):
     with torch.no_grad():
         for idx, batch in enumerate(dataloader):
             dataloader.set_description(f'[EVAL] : {idx}')
-            _, coords, depths = batch
+            coords, depths = batch
             coords = coords.squeeze(0)
             for cidx in range(math.ceil(W * H / S)):
                 select_coords = coords[list(range(S * cidx, min(S * (cidx + 1), len(coords))))]

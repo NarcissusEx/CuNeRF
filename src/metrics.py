@@ -26,8 +26,7 @@ class Metrics:
     
     # NWH
     def ssim(self, pds, gts):
-        print (pds.shape, gts.shape)
-        return structural_similarity(gts, pds, win_size=11, data_range=0, channel_axis=0)
+        return structural_similarity(gts, pds, win_size=11, data_range=1, channel_axis=0)
     
     def lpips(self, pds, gts):
         with torch.no_grad():
