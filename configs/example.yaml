@@ -1,14 +1,14 @@
 # example config for CuNeRF
 
 # training
-max_iter : 200000
+max_iter : 250000
 eval_iter: 10000
 save_iter: $eval_iter
 log_iter : 100
-bs_train : 1024 # batch size 
-bs_eval  : 32768
+bs_train : 2048 # batch size 
+bs_eval  : 2048
 bs_test  : $bs_eval
-N_eval   : 50
+N_eval   : 5  ####
 lr       : 0.002
 lr_final : 0.00002
 workers  : 4
@@ -17,16 +17,23 @@ workers  : 4
 stype     : cube
 radius    : 1
 n_samples : 64
-n_imps    : 64
+n_imps    : 128
 mtype     : NeRFMLP
 
 # test
-zpos      : [0]
-scales    : [1]
-angles    : [0]
+# zpos      : [0]
+# scales    : [1]
+# angles    : [0]
+# asteps    : 45
+# axis      : [0, 1, 1]
+# cam_scale : 1.5
+zpos      : [-0.1, 0.1]
+scales    : [2]
+angles    : [0, 30, 60, 90]
 asteps    : 45
 axis      : [0, 1, 1]
 cam_scale : 1.5
+
 
 # path
 result_path : save
@@ -53,7 +60,7 @@ model :
   netW    : 256
   in_ch   : 3
   out_ch  : 2
-  skips   : [4]
+  skips   : [4, 8]
   max_freq: 10
   p_fns   : ['sin', 'cos']
 

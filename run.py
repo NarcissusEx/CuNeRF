@@ -89,6 +89,7 @@ def eval(cfg):
             assert S * (cidx + 1) >= H * W
 
         pds = pds.reshape(N, W, H)
+
         cfg.evaluation(pds)
 
 def test(cfg):

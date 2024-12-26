@@ -12,9 +12,14 @@ class NeRFMLP(base.baseModel):
         self.out_MLP = nn.Linear(self.netW, self.out_ch)
 
     def forward(self, x):
+        # print(x.shape)
         x = self.embed(x)
         h = x
         for idx, mlp in enumerate(self.coords_MLP):
             h = torch.cat([x, h], -1) if idx in self.skips else F.relu(mlp(h)) 
         out = self.out_MLP(h)
+        # print(out.shape)
         return out 
+    
+
+

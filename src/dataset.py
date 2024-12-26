@@ -51,7 +51,7 @@ class Base(Dataset):
 
     def z_trans(self, z):
         return 2 * np.pi * (z + self.pad) / (self.len + 2 * self.pad - 1) - np.pi
-    
+     
     def sampling(self, coords, xy_inds, z_coord, pad):
         xy_coords = coords[xy_inds[:, 0] + pad, xy_inds[:, 1] + pad]
         LR_coords = torch.cat([coords[xy_inds[:, 0] + pad, xy_inds[:, 1] + ind][:, 0:1] for ind in [0, pad * 2]], 1)
@@ -114,11 +114,14 @@ class Medical3D(Base):
         data = self.load_file()
         data = self.nomalize(data)
         self.data = self.align(data)
+        # self.data = data # remove align
+
         self.len, self.H, self.W = self.data.shape
-        print (self.len, self.H, self.W)
+        print ("data shape after align：", self.len, self.H, self.W)
         self.setup()
 
     def align(self, data):
+        print("data shape:", data.shape)
         if data.shape[1] != data.shape[2]:
             if data.shape[0] == data.shape[2]:
                 data = data.permute(1, 0, 2)
@@ -130,6 +133,7 @@ class Medical3D(Base):
 
     def load_file(self):
         data = sitk.GetArrayFromImage(sitk.ReadImage(self.file)).astype(float)
+        print("data shapewewfdasefe:", data.shape)
         data = torch.from_numpy(data).float().cuda()
         if len(data.shape) == 4:
             modalities = {
@@ -138,6 +142,7 @@ class Medical3D(Base):
                 't1gd'  : 2,
                 'T2w'   : 3
             }
+            self.modality = 'T1w'
             data = data[modalities[self.modality]]
         return data
 

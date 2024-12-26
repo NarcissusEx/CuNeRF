@@ -22,6 +22,8 @@ class Metrics:
         return scores
 
     def psnr(self, pds, gts):
+    
+        # print(pds.shape, gts.shape)
         return peak_signal_noise_ratio(gts, pds, data_range=1)
     
     # NWH

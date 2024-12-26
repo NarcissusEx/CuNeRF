@@ -13,3 +13,4 @@ class baseModel(torch.nn.Module):
 
     def embed(self, coords):
         return torch.cat([coords, *[getattr(torch, p_fn)(coords * freq) for freq in self.freqs for p_fn in self.p_fns]], -1)
+    

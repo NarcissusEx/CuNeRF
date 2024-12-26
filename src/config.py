@@ -21,6 +21,7 @@ from torch.utils.data import DataLoader
 from . import dataset, loss, metrics, rendering, sampling, models, importance
 from .utils import dfs_update_configs, clip_grad, lr_decay, merge_configs, mlt_process
 
+from torchsummary import summary
 
 class Cfg:
 
@@ -46,6 +47,9 @@ class Cfg:
         # loading config setup
         def load_model(self, cfg):
             self.model = getattr(models, cfg.pop('name'))(**cfg).cuda()
+            
+
+            summary(self.model, input_size=(64,3))
 
         def load_model_ft(self, cfg):
             self.model_ft = getattr(models, cfg.pop('name'))(**cfg).cuda()
@@ -62,9 +66,9 @@ class Cfg:
 
         def load_dataloader(self, cfg):
             mode = cfg.pop('mode')
-            setattr(self, f'{mode}loader', DataLoader(getattr(self, f'{mode}set'), **cfg[mode]))
+            setattr(self, f'{mode}loader', DataLoader(getattr(self, f'{mode}set'), **cfg[mode], generator=torch.Generator(device='cuda:1') ))
             if mode == 'train':
-                self.evalloader = DataLoader(self.evalset, **cfg['eval'])
+                self.evalloader = DataLoader(self.evalset, **cfg['eval'], generator=torch.Generator(device='cuda:1'))
 
         def load_metrics(self, cfg):
             self.metrics = metrics.Metrics(cfg)
@@ -253,6 +257,7 @@ class Cfg:
         
     def Render(self, coord_batch, depths, is_train=False, R=None):
         ans0 = self.sample_fn(coord_batch, depths, is_train=is_train, R=R)
+        # print("ans0['pts'].shape:", ans0['pts'].shape)
         raw0 = self.model(ans0['pts'])
         out0 = self.render_fn(raw0, **ans0)
         ans = self.imp_fn(**ans0, **out0, is_train=is_train)
